@@ -1,0 +1,81 @@
+:root {
+  --background: #fffcfd;
+  --foreground: #250e07;
+  --light-gray: #f3eae9;
+  --gray: #d8b8b3;
+  --green: #6f873e;
+  --red: #ed5466;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Sans-Serif;
+}
+
+#message-pane {
+  height: 100dvh;
+  width: 100dvw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#message-log {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25em;
+  overflow: auto;
+}
+
+.self-message {
+  background-color: var(--light-gray);
+  display: inline-block;
+  align-self: flex-end;
+  margin: 0.25em 0.5em;
+  padding: 0.5em 0.75em;
+  border-radius: 1em;
+  font-size: 1rem;
+}
+
+.other-message {
+  background-color: var(--green);
+  color: var(--background);
+  display: inline-block;
+  margin: 0.25em 0.5em;
+  padding: 0.5em 0.75em;
+  border-radius: 1em;
+}
+
+#composer {
+  margin: 0.25em;
+  padding: 0.25em;
+  display: flex;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--gray);
+  border-radius: 1em;
+}
+
+#composer-input {
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  background-color: var(--background);
+  padding: 0em 0.5em;
+  font-size: 1rem;
+}
+
+#send-button {
+  border: none;
+  border-radius: 1em;
+  aspect-ratio: 1/1;
+  background: var(--red);
+  color: var(--background);
+}
