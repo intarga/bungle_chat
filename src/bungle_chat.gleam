@@ -7,7 +7,7 @@ import lustre/element/html
 import lustre/event
 
 pub type Dm {
-  Dm(content: String)
+  Dm(content: String, author: String)
 }
 
 pub type Model {
@@ -20,7 +20,7 @@ pub type Msg {
 }
 
 fn init(_flags) -> #(Model, effect.Effect(Msg)) {
-  #(Model([Dm("message1"), Dm("message2")], ""), effect.none())
+  #(Model([Dm("message2", "me"), Dm("message1", "other")], ""), effect.none())
 }
 
 pub fn update(model: Model, msg: Msg) -> #(Model, effect.Effect(Msg)) {
@@ -30,8 +30,7 @@ pub fn update(model: Model, msg: Msg) -> #(Model, effect.Effect(Msg)) {
       effect.none(),
     )
     UserSentDm -> #(
-      Model([Dm(model.composer_text), ..model.dms], ""),
-      // effect.Effect(UserUpdatedComposer("")),
+      Model([Dm(model.composer_text, "me"), ..model.dms], ""),
       effect.none(),
     )
   }
@@ -42,7 +41,12 @@ pub fn view(model: Model) -> element.Element(Msg) {
     html.div(
       [attr.id("message-log")],
       list.map(model.dms, fn(dm) {
-        html.div([attr.class("self-message")], [element.text(dm.content)])
+        case dm.author {
+          "me" ->
+            html.div([attr.class("self-message")], [element.text(dm.content)])
+          _ ->
+            html.div([attr.class("other-message")], [element.text(dm.content)])
+        }
       }),
     ),
     html.div([attr.id("composer")], [
