@@ -46,17 +46,25 @@ pub fn view(model: Model) -> element.Element(Msg) {
       }),
     ),
     html.div([attr.id("composer")], [
-      html.textarea(
+      html.div(
         [
-          // TODO: link with button in a form?
-          attr.autofocus(True),
-          attr.placeholder("-- Type a message: --"),
-          attr.id("composer-input"),
-          attr.value(model.composer_text),
-          attr.rows(1),
-          event.on_input(UserUpdatedComposer),
+          attr.class("grow-wrap"),
+          attr.attribute("data-replicated-value", model.composer_text),
         ],
-        "",
+        [
+          html.textarea(
+            [
+              // TODO: link with button in a form?
+              attr.autofocus(True),
+              attr.placeholder("-- Type a message: --"),
+              attr.id("composer-input"),
+              attr.value(model.composer_text),
+              attr.rows(1),
+              event.on_input(UserUpdatedComposer),
+            ],
+            "",
+          ),
+        ],
       ),
       html.button([attr.id("send-button"), event.on_click(UserSentDm)], [
         element.text(">"),

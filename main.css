@@ -61,15 +61,43 @@ body {
   border-radius: 1em;
 }
 
-#composer-input {
+/* This is a trick to make the textarea auto grow, by attaching a shadow element that can autogrow
+   with the same content */
+.grow-wrap {
+  /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+  display: grid;
+  width: 100%;
+}
+.grow-wrap::after {
+  /* Note the weird space! Needed to preventy jumpy behavior */
+  content: attr(data-replicated-value) " ";
+
+  /* This is how textarea text behaves */
+  white-space: pre-wrap;
+
+  /* Hidden from view, clicks, and screen readers */
+  visibility: hidden;
+}
+.grow-wrap > textarea {
+  /* You could leave this, but after a user resizes, then it ruins the auto sizing */
   resize: none;
+
+  /* Firefox shows scrollbar on growth, you can hide like this. */
+  overflow-y: hidden;
+}
+.grow-wrap > textarea,
+.grow-wrap::after {
+  /* Identical styling required!! */
+  border: none;
+  font: inherit;
   outline: none;
   box-sizing: border-box;
-  width: 100%;
-  border: none;
+  overflow-wrap: anywhere;
   background-color: var(--background);
   padding: 0em 0.5em;
-  font-size: 1rem;
+
+  /* Place on top of each other */
+  grid-area: 1 / 1 / 2 / 2;
 }
 
 #send-button {
