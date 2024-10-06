@@ -16,7 +16,7 @@ const html = "<!doctype html>
       rel=\"stylesheet\"
       href=\"/static/styles.css\"
     />
-    <script type=\"module\" src=\"/static/bungle_chat.min.mjs\"></script>
+    <script type=\"module\" src=\"/static/frontend.min.mjs\"></script>
   </head>
 
   <body>
