@@ -1,5 +1,5 @@
 *.beam
 *.ez
 */build
-/frontend/priv
+/frontend/priv/static/bungle_chat.mjs
 erl_crash.dump
